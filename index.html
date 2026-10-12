@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>သဒ္ဒါ ဂိမ်း – Grammar Quest</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;700&family=Fraunces:wght@600;800&family=Inter:wght@500;600;700;800&display=swap">
+<style>
+:root{--bg:#F3F7FF;--ink:#102447;--card:#fff;--line:#E3EAF7;--hl:#E0ECFF;--pu:#2563EB;--ok:#20B486;--no:#d64545;--mute:#5b6784;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 Inter,"Noto Sans Myanmar",system-ui,sans-serif;min-height:100vh}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+h1{font:800 30px/1.3 Fraunces,Georgia,serif;margin:8px 0 4px}
+h2{font:700 22px/1.5 "Noto Sans Myanmar",sans-serif;margin:0 0 8px}
+.sub{color:var(--mute);margin:0 0 20px}
+.bar{display:flex;justify-content:space-between;align-items:center;font-weight:600;margin-bottom:14px}
+.pts{background:var(--hl);color:#1d2a44;border-radius:99px;padding:0 14px}
+.grid{display:grid;gap:10px}
+.lesson{display:flex;gap:14px;align-items:center;text-align:left;width:100%;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 16px;color:inherit;font:inherit;cursor:pointer}
+.lesson:hover,.lesson:focus-visible{border-color:var(--ink);outline:none}
+.lesson b{display:block;font-family:Fraunces,Georgia,serif;font-size:18px;line-height:1.4}
+.lesson small{color:var(--mute);line-height:1.5}
+.n{flex:none;width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-weight:700}
+.lesson.done .n{background:var(--ok);color:#fff}
+.stars{margin-left:auto;letter-spacing:2px;color:#e0a800}
+.card{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.formula{font:600 17px/1.6 Fraunces,Georgia,serif;background:var(--hl);color:#1d2a44;padding:8px 12px;border-radius:8px;margin:8px 0;overflow-wrap:anywhere}
+.ex{font-family:Fraunces,Georgia,serif;color:var(--ok);margin:2px 0}
+.btn{display:block;width:100%;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font:700 17px "Noto Sans Myanmar",sans-serif;padding:12px;margin-top:14px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.q{font:600 21px/1.6 Fraunces,Georgia,serif;margin:6px 0 14px}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0;font:600 18px Fraunces,Georgia,serif;color:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--card))}
+.opt.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 18%,var(--card))}
+.fb{margin-top:12px;font-weight:600}
+.prog{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin-bottom:14px}
+.prog i{display:block;height:100%;background:var(--ok);transition:width .3s}
+.big{font-size:56px;text-align:center;margin:10px 0;color:#e0a800}
+input,textarea{width:100%;font:inherit;padding:10px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);margin-top:8px}
+.ai{display:none}.hasai .ai{display:block}
+.rs{border-left:4px solid var(--line);padding:4px 12px;margin:10px 0}.rs.ok{border-color:var(--ok)}.rs.no{border-color:var(--no)}.wk{background:var(--hl);color:#1d2a44;border-radius:10px;padding:10px 14px;margin:12px 0}.vl p{margin:4px 0;line-height:1.6}
+#fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;background:var(--ink);color:var(--bg);font-size:26px;cursor:pointer;z-index:20;box-shadow:0 4px 14px #0004}
+#cp{position:fixed;top:0;right:0;bottom:0;width:min(380px,100%);background:var(--card);border-left:2px solid var(--line);z-index:30;display:none;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+#cp.open{display:flex}#ch{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:2px solid var(--line);font-weight:700}#ch button{border:0;background:none;color:inherit;font-size:22px;cursor:pointer}
+#cm{flex:1;overflow-y:auto;padding:12px}.mb{margin:8px 0;padding:8px 12px;border-radius:12px;white-space:pre-wrap;line-height:1.7}.mb.u{background:var(--hl);color:#1d2a44;margin-left:28px}.mb.a{background:var(--bg);border:1px solid var(--line);margin-right:28px}
+#cf{display:flex;gap:8px;padding:10px;border-top:2px solid var(--line)}#cf input{margin:0}#cf button{flex:none;width:auto;margin:0;padding:0 16px}
+h1,h2,.lesson b,.formula,.ex,.q,.opt{font-family:Inter,"Noto Sans Myanmar",sans-serif!important}
+#shell{display:flex;min-height:100vh}
+#sb{width:232px;flex:none;background:#102447;color:#fff;padding:20px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+#sb .lg{font:800 19px Inter,sans-serif;padding:4px 10px 18px}
+#sb button{display:flex;gap:10px;align-items:center;background:none;border:0;color:#cfd8f0;font:600 15px Inter,"Noto Sans Myanmar",sans-serif;padding:11px 12px;border-radius:12px;cursor:pointer;text-align:left}
+#sb button:hover{background:#1c3566;color:#fff}
+#sb .ai{display:none}.hasai #sb .ai{display:flex}
+#app{flex:1;min-width:0;max-width:780px;margin:0 auto;padding:24px 20px 48px}
+.hero{background:linear-gradient(135deg,#102447,#2563EB);color:#fff;border-radius:20px;padding:24px;margin-bottom:16px}
+.hero h1{font-size:28px;line-height:1.35;margin:4px 0 6px;color:#fff}.hero p{margin:0;opacity:.88}
+.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:24px}
+.dc{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:left;font:700 15px/1.5 Inter,"Noto Sans Myanmar",sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 2px 8px #10244714}
+.dc span{display:block;font-size:26px}.dc small{display:block;color:var(--mute);font-weight:400}
+.dc.ai{display:none}.hasai .dc.ai{display:block}
+.btn{background:var(--pu);color:#fff}.btn.ghost{background:transparent;color:var(--ink)}
+.lesson,.card,.opt{border-width:1px;border-radius:16px;box-shadow:0 2px 8px #10244712}
+.n{background:var(--pu)}.pts{background:#E0ECFF;color:#2563EB}.prog i{background:var(--pu)}
+#fab{background:linear-gradient(135deg,#2563EB,#60A5FA);color:#fff;animation:pu 2s infinite}
+@keyframes pu{0%{box-shadow:0 0 0 0 #2563eb66}100%{box-shadow:0 0 0 16px #2563eb00}}
+@media(prefers-reduced-motion:reduce){#fab{animation:none}}
+@media(max-width:760px){#sb{position:fixed;top:auto;bottom:0;left:0;right:0;width:auto;height:auto;flex-direction:row;justify-content:space-around;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:15}#sb .lg{display:none}#sb button{flex-direction:column;gap:2px;font-size:11px;padding:6px 4px;text-align:center}#app{padding-bottom:96px}#fab{bottom:calc(78px + env(safe-area-inset-bottom,0px))}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+#sb{width:250px}#sb .lg{display:flex;gap:10px;align-items:center;padding:4px 8px 6px}#sb .lg .ico{width:32px;height:32px;font-size:16px}
+.sbl{font:700 10px Inter,sans-serif;letter-spacing:.08em;color:#8fa0c8;padding:14px 12px 8px}
+#sb button.on{background:#1c3566;color:#fff}
+.spark{margin-top:auto;background:#1a3160;border-radius:14px;padding:14px;font-size:13px;line-height:1.5}.spark small{display:block;color:#b9c6e6;font-size:12px}.spark .prog{height:6px;margin:8px 0;background:#2c457f}.spark .prog i{background:#fff}
+.usr{display:flex;gap:10px;align-items:center;padding:14px 4px 0;font-size:13px}.usr small{display:block;color:#9fb0d8;font-size:11px}
+.av{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#E0ECFF;color:#2563EB;font:700 11px Inter,sans-serif}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mute);padding-bottom:18px}.top b{color:var(--ink);font-weight:600}.tr{display:flex;gap:10px;align-items:center}.lang{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:11px}
+.eyebrow{display:block;font:700 11px Inter,sans-serif;letter-spacing:.06em;color:var(--pu)}h1{font-size:28px;margin:4px 0}
+.hero{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;align-items:center;background:#102447;padding:26px;margin:16px 0}.hero h1{font-size:30px;margin:10px 0 6px}
+.chip{display:inline-block;font:700 11px Inter,"Noto Sans Myanmar",sans-serif;background:#E0ECFF;color:#2563EB;border-radius:99px;padding:3px 12px;border:0}.chip.dk{background:#2a2f6e;color:#d8d6ff;margin-right:6px}
+.chip.ai{display:none}.hasai .chip.ai{display:inline-block}
+.cta{border:0;background:var(--pu);color:#fff;font:700 14px Inter,"Noto Sans Myanmar",sans-serif;border-radius:12px;padding:11px 20px;margin-top:14px;cursor:pointer}
+.partner{background:#1a3160;border-radius:16px;padding:16px;font-size:13px}.pt{display:flex;gap:10px;align-items:center}.pt small{display:block;color:#b9c6e6}
+.ico{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--pu);font-size:20px}.qt{font:700 16px/1.5 Inter,sans-serif;margin:12px 0}
+.hg,.tg2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hg{margin-bottom:24px}
+.hc,.tp{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;text-align:left;color:var(--ink);font:inherit;cursor:pointer;box-shadow:0 2px 8px #10244712}
+.hc b,.tp b{display:block;font-size:15px}.hc small,.tp small{display:block;color:var(--mute);font-size:12px;line-height:1.5;margin:2px 0 6px}.tp small{margin-bottom:0}.hc em{font:600 12px Inter,sans-serif;font-style:normal;color:var(--pu)}
+.tp div{flex:1}.tp>span:last-child{color:var(--mute)}.hc:hover,.tp:hover{border-color:var(--pu)}
+.ic{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:color-mix(in srgb,var(--pu) 14%,var(--card));font-size:17px;font-weight:700;color:var(--pu)}
+.streak{display:flex;gap:12px;background:color-mix(in srgb,var(--pu) 12%,var(--card));border-radius:16px;padding:16px;margin-top:22px;color:var(--ink)}.streak>div{flex:1}.streak small{display:block}
+.qm{display:flex;justify-content:space-between;align-items:center;margin:10px 0 14px}.tmr{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:4px 12px;font:600 13px Inter,sans-serif}
+.qp{display:flex;justify-content:space-between;font-size:12px;color:var(--mute);margin-bottom:6px}.qc{padding:22px}.qc .q{font:700 24px/1.5 Inter,"Noto Sans Myanmar",sans-serif!important;margin:8px 0 14px}
+.opt{display:flex;align-items:center;gap:12px}.opt i{font-style:normal;width:28px;height:28px;border-radius:8px;background:var(--bg);display:grid;place-items:center;font:700 12px Inter,sans-serif;flex:none}
+.opt.on{border-color:var(--pu);background:color-mix(in srgb,var(--pu) 16%,var(--card))}.opt.on i{background:var(--pu);color:#fff}
+.qn{display:flex;justify-content:space-between;align-items:center;margin:16px 0 10px;gap:10px}.qn span{display:flex;gap:10px}.qn .btn{width:auto;margin:0;padding:10px 18px}.qn .btn:disabled{opacity:.45}.note{font-size:12px;color:var(--mute)}
+#fab{display:none;width:auto;height:auto;border-radius:16px;background:var(--card);color:var(--ink);padding:10px 14px;gap:10px;align-items:center;text-align:left;font:600 13px Inter,"Noto Sans Myanmar",sans-serif;border:1px solid var(--line);animation:none;box-shadow:0 6px 20px #10244722}.hasai #fab{display:flex}#fab small{display:block;font-weight:400;color:var(--mute);font-size:11px}#fab .ico{width:34px;height:34px;font-size:17px}
+@media(max-width:760px){.hero,.hg,.tg2{grid-template-columns:1fr}.spark,.usr,.sbl{display:none}.qn{flex-direction:column;align-items:stretch}.qn span{justify-content:space-between}.qn span .btn{flex:1}}
+
+body{background:#F3F7FF}
+#sb{background:#fff;color:#102447;border-right:1px solid #E3EAF7}
+#sb button{color:#4b5b7a}#sb button:hover,#sb button.on{background:#EAF2FF;color:#2563EB}
+.sbl{color:#8a97b2}
+.spark{background:#EAF2FF;color:#102447}.spark small{color:#55688c}.spark .prog{background:#CFE0FF}.spark .prog i{background:#2563EB}
+.usr small{color:#6b7a99}
+.hero{background:linear-gradient(135deg,#2563EB,#1D4ED8 60%,#3B82F6);box-shadow:0 10px 28px rgba(37,99,235,.25)}
+.partner{background:rgba(255,255,255,.16)}.pt small{color:#dbe8ff}.chip.dk{background:rgba(255,255,255,.2);color:#fff}
+.cta{background:#fff;color:#2563EB}.hero .ico{background:#fff}
+.hc,.tp,.card,.lesson,.opt,.tmr{box-shadow:0 4px 16px rgba(37,99,235,.07);border-color:#E3EAF7}
+#fab{box-shadow:0 8px 24px rgba(37,99,235,.2);border-color:#D6E4FF}
+</style>
+</head>
+<body>
+<div id="shell"><nav id="sb"><div class="lg"><span class="ico">🎓</span> Grammar Quest</div><div class="sbl">LEARNING WORKSPACE</div><button class="on" onclick="map()">🏠 <span>Home</span></button><button onclick="gg()">📝 <span>Quizzes</span></button><button onclick="gg()">📖 <span>Topics</span></button><button onclick="gv()">🔤 <span>Vocabulary</span></button><button onclick="path()">📊 <span>Progress</span></button><div class="spark"><b>🔥 Keep your spark alive</b><small>One small lesson makes a big difference.</small><div class="prog"><i id="spi" style="width:0"></i></div><small id="spt">0 of 8 lessons</small></div><div class="usr"><span class="av">GQ</span><div><b>Learner</b><small>Curious learner</small></div></div></nav><main id="app"></main></div>
+<button id="fab" class="ai" onclick="tg()"><span class="ico">🤖</span><span><b>AI Grammar Tutor</b><small>A little help, anytime</small></span></button>
+<aside id="cp"><div id="ch"><span>🤖 AI ဆရာ</span><button onclick="tg()" aria-label="close">✕</button></div><div id="cm"><div class="mb a">မင်္ဂလာပါ! ဒီသင်ခန်းစာနဲ့ ပတ်သက်ပြီး မေးချင်တာ ဘာမဆို မြန်မာလို မေးပါ။</div></div><div id="cf"><input id="ci" placeholder="မေးခွန်းရိုက်ပါ…" onkeydown="if(event.key=='Enter')say()"><button class="btn" onclick="say()">ပို့</button></div></aside>
+<script>
+var L=[
+{t:"Third Person Singular",m:"ပထမ ၃ ယောက်မြောက် ကိန်းတစ်",
+ e:"he / she / it (သို့) လူ၊ ပစ္စည်း တစ်ခုတည်းကို ပြောရင် Present Simple မှာ ကြိယာနောက် <b>-s</b> ထည့်ရတယ်။ o, s, x, ch, sh နဲ့ဆုံးရင် <b>-es</b>။ ဗျည်း+y ဆိုရင် y ကို <b>-ies</b> ပြောင်းတယ်။<br><br><b>စာမေးပွဲပုံစံ (plural → singular):</b> ① subject ကို singular ပြောင်းပါ၊ a/an ထည့်ပါ (They→He/She၊ computers→a computer) ② ကြိယာ -s/-es ထည့်ပါ (have→has၊ are→is၊ do→does) ③ their→its/his/her ပြောင်းပါ ④ မေးခွန်းမှာ Does နောက် ကြိယာကို မူလပုံစံအတိုင်း ထားပါ ⑤ ပြောင်းပြီးရင် subject-verb ကိုက်မကိုက် ပြန်စစ်ပါ။",
+ f:"He/She/It + verb<b>-s / -es / -ies</b>",x:["She works here.","He watches TV.","It studies hard → She studies.","Computers are powerful machines. → A computer is a powerful machine.","Do cars have airbags? → Does a car have an airbag?"],w:["ကိုယ်ပိုင်းတစ်ခုတည်း (he/she/it) သို့ ပြောင်းရာတွင် နာမ်ကို singular ပြောင်းပါ (a/an ထည့်ပါ)။ ကြိယာတွင် -s/-es ထည့်ပါ၊ have→has၊ are→is၊ do→does သုံးပါ၊ their→its ပြောင်းပါ။ မေးခွန်းတွင် Does နောက်ကြိယာကို မူလပုံစံအတိုင်း ထားပါ။ စာကြောင်းတိုင်းကို ပြောင်းပြီးမှ ပြန်စစ်ပါ။","Subject ကို plural မှ singular သို့ အရင်ပြောင်းပါ (They→He/She, dogs→dog)၊ ထို့နောက် verb တွင် -s/-es ထည့်ပါ (watch→watches, have→has, do→does, eat→eats)။ his/her/its ကဲ့သို့ possessive များကိုလည်း လိုက်ပြောင်းပါ။ ပြောင်းပြီးတိုင်း subject နှင့် verb ကိုက်ညီမှု ပြန်စစ်ပါ။","Subject ကို များပြားမှုကနေ တစ်ခုတည်း (he/she/it) သို့ ပြောင်းတဲ့အခါ subject တစ်ခုလုံး၊ verb (-s/-es)၊ နာမ်စားပိုင်ဆိုင်မှု (their → his/her/its) ကို အကုန်ပြောင်းရပါမယ်။ မေးခွန်းမှာ Do → Does ဖြစ်ပြီး main verb က မူလအတိုင်းပါ။","I/we/they ကို he/she/it သို့ ပြောင်းပြီး ကြိယာတွင် -s/-es/-ies ထည့်ရမည်ကို မလုပ်ခဲ့ပါ။ drink→drinks၊ watch→watches၊ mix→mixes၊ try→tries။ ဝါကျတစ်ကြောင်းရှိ subject အားလုံးကို တစ်ခုချင်းစစ်ပါ။ -ch, -sh, -x, -s, -o ဖြင့်ဆုံးလျှင် -es၊ ဗျည်း+y ဆိုလျှင် -ies သုံးပါ။"],
+ q:[["She ___ English every day.",["study","studies","studys","studying"],1,"study က ဗျည်း+y ဖြစ်လို့ studies ဖြစ်တယ်။"],
+    ["He ___ TV at night.",["watch","watchs","watches","watching"],2,"ch နဲ့ဆုံးတဲ့အတွက် -es ထည့်ပါ။"]]},
+{t:"Interrogative",m:"မေးခွန်းပုံစံ",
+ e:"Yes/No မေးခွန်းမှာ <b>Do / Does</b> ကို ရှေ့ဆုံးထားပြီး ကြိယာကို မူလပုံစံ (base form) နဲ့ သုံးတယ်။ he/she/it ဆိုရင် <b>Does</b>။ Wh-word (What, Where, When, Why, Who, How) ကို ရှေ့ဆုံးထည့်လို့ရတယ်။",
+ f:"(Wh-word) + Do/Does + subject + verb(base)?",x:["Does she like tea?","Where do you live?"],
+ q:[["___ she like tea?",["Do","Does","Is","Are"],1,"she ဖြစ်လို့ Does သုံးရမယ်။"],
+    ["___ do you live?",["Where","Who","Does","Which is"],0,"နေရာကို မေးတာဖြစ်လို့ Where။"]]},
+{t:"Wish",m:"ဆန္ဒ / နောင်တ",
+ e:"<b>wish</b> ကို မဖြစ်နိုင်တာ (သို့) မဖြစ်ခဲ့တာကို ဆန္ဒရှိတဲ့အခါ သုံးတယ်။ လက်ရှိအတွက် wish + <b>Past Simple</b> (be ဆိုရင် were)။ အတိတ်နောင်တအတွက် wish + <b>had + V3</b>။",
+ f:"wish + past simple (ယခု) | wish + had + V3 (အတိတ်)",x:["I wish I were rich.","I wish I had studied harder."],
+ q:[["I wish I ___ rich.",["am","were","will be","have been"],1,"လက်ရှိ မဖြစ်နိုင်တာ → wish + were။"],
+    ["I wish I ___ harder last year.",["study","studied","had studied","would study"],2,"အတိတ်နောင်တ → had + V3။"]]},
+{t:"Tenses",m:"ကာလ (Tenses)",
+ e:"ကြိယာရဲ့ အချိန်ကို ပြတာပါ။ <b>Present Simple</b> – ပုံမှန်အလေ့အထ။ <b>Present Continuous</b> – အခုလုပ်နေတာ (am/is/are + V-ing)။ <b>Past Simple</b> – ပြီးခဲ့တာ (V2)။ <b>Future</b> – will + V1။",
+ f:"V1 | am/is/are + V-ing | V2 | will + V1",x:["I go to school.","It is raining now.","I went yesterday.","I will go tomorrow."],
+ q:[["Yesterday I ___ to school.",["go","goes","went","will go"],2,"Yesterday = အတိတ် → Past Simple (went)။"],
+    ["Look! It ___ now.",["rains","is raining","rained","will rain"],1,"Look! / now = အခုဖြစ်နေတာ → Continuous။"]]},
+{t:"Have + obj + V3",m:"တစ်ယောက်ယောက်ကို လုပ်ခိုင်းခြင်း",
+ e:"ကိုယ်တိုင်မလုပ်ဘဲ တခြားသူကို <b>လုပ်ခိုင်းတယ်</b> (သို့) ကိုယ့်အတွက် လုပ်ပေးခံရတယ်ဆိုတဲ့ အဓိပ္ပါယ်။ object ရဲ့နောက်မှာ <b>V3</b> (past participle) ကိုသုံးတယ်။",
+ f:"have/has/had + object + <b>V3</b>",x:["I had my hair cut.","She has her car repaired."],
+ q:[["I had my car ___.",["repair","repairing","repaired","repairs"],2,"object နောက်မှာ V3 → repaired။"],
+    ["She ___ her house painted.",["had","made","did","was"],0,"လုပ်ခိုင်းတာ → have/had + object + V3။"]]},
+{t:"Have + obj + V3 + by noun",m:"လုပ်သူကို by နဲ့ ပြခြင်း",
+ e:"အပေါ်က ပုံစံအတိုင်းပါပဲ၊ ဒါပေမယ့် <b>ဘယ်သူလုပ်ပေးသလဲ</b> ဆိုတာကို ထပ်ပြချင်ရင် နောက်ဆုံးမှာ <b>by + noun</b> ထည့်တယ်။",
+ f:"have + object + V3 + <b>by + noun</b>",x:["I had my car repaired by a mechanic.","We had the report checked by the manager."],
+ q:[["He had his shirt washed ___ his sister.",["from","with","by","to"],2,"လုပ်သူကို ပြဖို့ by သုံးတယ်။"],
+    ["We had the report ___ by the manager.",["check","checked","checking","checks"],1,"object နောက် V3 → checked။"]]},
+{t:"Modal auxiliaries",m:"ကြိယာတွဲ (Modal)",
+ e:"<b>can, could, may, might, must, should, will, would</b> တို့ကို ကြိယာအရင်းရှေ့မှာ သုံးတယ်။ modal နောက်က ကြိယာက <b>မူလပုံစံ (V1)</b> ပဲ ဖြစ်ရမယ် – -s, -ing, to မထည့်ရ။ can = စွမ်းရည်၊ must = မဖြစ်မနေ၊ should = အကြံပေး၊ may = ခွင့်ပြု။",
+ f:"subject + modal + <b>V1</b>",x:["She can swim.","You must wear a seat belt.","You should rest."],
+ q:[["You ___ wear a seat belt. (မဖြစ်မနေ)",["can","must","may","would"],1,"မဖြစ်မနေလုပ်ရမယ် → must။"],
+    ["She can ___ well.",["swims","swimming","to swim","swim"],3,"modal နောက်မှာ V1 အတိအကျ သုံးရတယ်။"]]},
+{t:"Deduction",m:"ခန့်မှန်းဆင်ခြင်ခြင်း",
+ e:"သက်သေရှိလို့ ခန့်မှန်းတဲ့အခါ modal သုံးတယ်။ <b>must be</b> = သေချာတယ်။ <b>may / might / could be</b> = ဖြစ်နိုင်တယ်။ <b>can't be</b> = မဖြစ်နိုင်ဘူး။",
+ f:"must be (သေချာ) | might/may/could be (ဖြစ်နိုင်) | can't be (မဖြစ်နိုင်)",x:["He must be tired.","She might be at home.","That can't be true."],
+ q:[["He's worked all day. He ___ be tired.",["can't","must","won't","shouldn't"],1,"အကြောင်းပြချက်ရှိလို့ သေချာတယ် → must be။"],
+    ["She is a baby. She ___ be 20 years old.",["must","might","can't","should"],2,"မဖြစ်နိုင်ဘူး → can't be။"]]}
+];
+var X=[
+[["My mother ___ in a bank.",["work","works","working","is work"],1,"my mother = she → works။"],["The baby ___ a lot.",["cry","cryes","cries","crying"],2,"ဗျည်း+y → cries။"]],
+[["___ they play football on Sunday?",["Does","Do","Is","Has"],1,"they အတွက် Do သုံးရတယ်။"],["Does he ___ coffee?",["drinks","drink","drinking","drank"],1,"Does ပါရင် ကြိယာက base form (drink)။"]],
+[["I wish it ___ stop raining.",["will","would","is","did"],1,"စိတ်ရှုပ်စရာအတွက် wish + would။"],["I wish I ___ the answer now.",["know","knew","had known","knows"],1,"လက်ရှိ မသိတာ → wish + past simple (knew)။"]],
+[["She ___ breakfast at 7 every day.",["has","is having","had","will have"],0,"every day = အလေ့အထ → Present Simple။"],["Tomorrow we ___ Bagan.",["will visit","visited","visits","visiting"],0,"Tomorrow = အနာဂတ် → will + V1။"]],
+[["I'll have my laptop ___ tomorrow.",["fix","fixed","fixing","fixes"],1,"object နောက် V3 → fixed။"],["They had their photos ___.",["take","took","taken","taking"],2,"take ရဲ့ V3 = taken။"]],
+[["She had her hair cut ___ a famous stylist.",["by","at","for","of"],0,"လုပ်သူကို ပြဖို့ by။"],["I had my essay ___ by my teacher.",["correct","corrected","correcting","corrects"],1,"V3 → corrected။"]],
+[["___ I open the window? (ခွင့်တောင်း)",["May","Must","Would be","Do"],0,"ခွင့်တောင်းရင် May / Can။"],["You ___ smoke here. It's forbidden.",["mustn't","should","can","may"],0,"တားမြစ်ချက် → mustn't။"]],
+[["The lights are on. They ___ be at home.",["can't","might","won't","mustn't"],1,"သေချာမသိ၊ ဖြစ်နိုင် → might be။"],["He failed every test. He ___ be a good student.",["must","can't","will","may"],1,"အကြောင်းပြချက်အရ မဖြစ်နိုင် → can't be။"]]
+];
+X.forEach(function(a,i){L[i].q=L[i].q.concat(a)});
+var RW=[null,
+{r:"Yes/No မေးခွန်းပြောင်းတဲ့အခါ ကြိယာကို ကြည့်ပါ။ V1 → <b>Do</b> + S + V1? | V-s/es → <b>Does</b> + S + V1? | V2/had → <b>Did</b> + S + V1? | has/have/had + V3 → <b>Has/Have/Had</b> + S + V3? | am/is/are/was/were → ရှေ့ပို့ | modal → Modal + S + V1? | some/no → <b>any</b>၊ my → <b>your</b>၊ I → <b>you</b> | has → Does + S + have၊ have → Do + S + have၊ had → Did + S + have။",x:["Daw Htar Htar lent some money to my brother. → Did Daw Htar Htar lend any money to your brother?","I can lose weight if I run daily. → Can you lose weight if you run daily?"],w:["Did/Does နောက်မှာ ကြိယာကို မူလပုံစံ (V1) ပြန်ထားရပါမယ် (lent → lend)။ some → any၊ my → your၊ I → you ပြောင်းဖို့ မမေ့ပါနဲ့။","has/have/had + V3 ဆိုရင် Do/Did မသုံးဘဲ Has/Have/Had ကို ရှေ့ဆုံးပို့ပါ (has been → Has she been…?)။"]},
+{r:"<b>အဆင့် ၁:</b> I'm sorry that / It's a pity that → <b>I wish</b>၊ He/She is sorry that → <b>He/She wishes</b>၊ was sorry → wished၊ Are you sorry → Do you wish…?။ <b>အဆင့် ၂:</b> that-clause ကြိယာပြောင်း - V1 → V2 | is/are + V-ing → were + V-ing | has/have + V3 → had + V3 | V2 → had + V3 | was/were + V-ing → had been + V-ing | had + V3 မပြောင်းရ။ clause မှာ not မပါရင် negative ပြောင်း၊ not ပါရင် positive ပြောင်းပါ။ wish နောက်မှာ <b>were</b> (was မဟုတ်)။ <b>တောင်းဆိုချက်:</b> Please V1 → I wish you would V1 | Don't V1 → I wish you would not V1။",x:["I'm sorry that I don't have her number. → I wish I had her number.","It's a pity that I didn't know. → I wish I had known.","Please stop making noise. → I wish you would stop making so much noise."],w:["that-clause မှာ not မပါရင် negative၊ not ပါရင် positive ပြောင်းရပါမယ် (don't have → had)။ V2 ဆိုရင် had + V3 (didn't know → had known)။","Please/Don't နဲ့ စတဲ့ တောင်းဆိုချက်ကို I wish you would (not) V1 နဲ့ ပြောင်းပါ။ be ကို was မသုံးဘဲ were သုံးပါ။"]},
+{r:"Clue word ကို ကြည့်ပြီး tense ရွေးပါ။ Present Simple: always, usually, every | Past Simple: yesterday, ago, last | Present Continuous: now, at the moment, Look! | Past Continuous: While S was V-ing, S V2 | Present Perfect (has/have + V3): yet, ever, never, just, already, since, for | Past Perfect (had + V3): after, already | Present Perfect Continuous: for, since, How long | Future: will + V1။ Conditional: If V1, will V1 | If V2, would V1 | If had V3, would have V3။",x:["While I was doing the course, I met lots of young people.","If I pass my exam, I will start an apprenticeship next year.","After we had set off, the car started to make a strange noise."],w:["Clue word ကို ကြည့်ပါ - yesterday/ago = V2၊ already/never/since = Perfect။ ဝါကျတစ်ကြောင်းမှာ ကြိယာ နှစ်လုံးရှိရင် နှစ်လုံးစလုံး ပြောင်းပါ။","If + V1 ဆိုရင် will + V1၊ If + V2 ဆိုရင် would + V1 ဖြစ်ရမယ် (နှစ်ပိုင်း ကိုက်ညီရမယ်)။ After နဲ့ဆိုရင် အရင်ဖြစ်တာက had + V3။"]},
+{r:"အဆင့် ၅ ဆင့်: ① subject ရေး ② ပထမကြိယာပြောင်း - present → have/has | past → had | has/have/had + V3 → has/have/had + had | modal + V1 → modal + have | am/is/are/was/were + V-ing → ... + having ③ ဒုတိယ object (အလုပ်ခံရတဲ့ အရာ) ရေး ④ ဒုတိယကြိယာကို V3 ပြောင်း (to ဖြုတ်) ⑤ ကျန်တာရေး။ လုပ်ပေးတဲ့သူ (doer) ကို ချန်ထားပါ။",x:["The teacher has asked the students to learn the poem by heart. → The teacher has had the poem learned by heart.","My father will call the plumber to mend the pipes. → My father will have the pipes mended."],w:["asked/call/paid လို ပထမကြိယာကို have/had/will have အဖြစ် ပြောင်းရပါမယ် (My father will call → will have)။","လုပ်ပေးတဲ့သူ (the plumber) ကို ဖြုတ်ပါ။ ဒုတိယကြိယာကို V3 (to mend → mended) ပြောင်းပြီး to မထည့်ပါနဲ့။"]},
+{r:"အပေါ်က အဆင့် ၅ ဆင့်အတိုင်းပါပဲ။ ဒါပေမယ့် လုပ်ပေးသူ (ပထမ object) ကို ဖြုတ်မထားဘဲ <b>by + noun</b> နဲ့ စာကြောင်းနောက်ဆုံးမှာ ထားပါ။ အချိန်/နေရာ စကားစုက အဆုံးဆုံးမှာ။",x:["The teacher has asked the students to learn the poem by heart. → The teacher has had the poem learned by heart by the students."],w:["Doer ကို မဖြုတ်ဘဲ by + noun နဲ့ အဆုံးမှာထားပါ (by the plumber)။ time/place စကားစု (yesterday, in her bathroom) က by phrase ရဲ့ နောက်မှာ။","ကြိယာ V3 မှန်မမှန် စစ်ပါ (iron → ironed၊ repair → repaired)။ ပထမကြိယာကိုလည်း have/has/had ပြောင်းဖို့ မမေ့ပါနဲ့။"]},
+{r:"အစားထိုးနည်း: It is possible that / I guess / Perhaps → <b>may</b> | It was possible that / I guessed → <b>might</b> | is able to / is permitted to → <b>can(not)</b> | was able to → <b>could</b> | is going to / promise to → <b>will</b> | was going to / promised to → <b>would</b> | it is advisable / ought to / obligated to → <b>should</b> | it is necessary for → <b>must</b>။ 'for … to' ကို ဖြုတ်ပါ - It is advisable for us to … → We should …",x:["Is Zaw Zaw able to swim? → Can Zaw Zaw swim?","It is necessary for all students to attend classes. → All students must attend classes."],w:["ဘယ်စကားစုက ဘယ် modal လဲ မှတ်ပါ (Perhaps → may၊ promise to → will၊ advisable → should၊ necessary → must)။","Modal ထည့်ရင် 'for … to' နဲ့ is/are ကို ဖြုတ်ပြီး ကြိယာကို V1 ထားပါ။ မေးခွန်းမှာ modal ကို ရှေ့ပို့ပါ။"]},
+{r:"ဝါကျက present/past၊ active/passive ဆိုတာ အရင်ဆုံးဖြတ်ပါ။ Present active: S + must + V1 | Present passive: S + must + be + V3 | Past active: S + must + have + V3 | Past passive: S + must + have been + V3။ Cue word က ကြိယာဆိုရင် အတိုင်းသုံး၊ နာမ်ဆိုရင် ကြိယာစကားစုပြောင်း၊ adjective ဆိုရင် be + adjective။",x:["The baby is crying a lot. (hungry) → The baby must be hungry.","She didn't answer my call yesterday. (busy) → She must have been busy."],w:["ဝါကျက အတိတ်ဆိုရင် must have + V3 (လက်ရှိဆိုရင် must + V1)။ yesterday/ago/was/didn't တွေက အတိတ်ပြတယ်။","Cue word က adjective (hungry, busy) ဆိုရင် must be / must have been + adjective ဖြစ်ပါတယ်။ passive ဆိုရင် be + V3 ထည့်ပါ (must have been moved)။"]}];
+RW.forEach(function(o,i){if(!o)return;L[i].e+='<br><br><b>PDF စည်းမျဉ်း:</b> '+o.r;L[i].x=L[i].x.concat(o.x);L[i].w=o.w});
+var T={};try{T=JSON.parse(localStorage.getItem('gq-stats')||'{}')}catch(e){}
+function sv(){try{localStorage.setItem('gq-stats',JSON.stringify(T))}catch(e){}}
+function rec(k,ok,q){var t=T[k]=T[k]||{n:0,w:0,q:[]};t.n++;if(!ok){t.w++;t.q=(t.q||[]).concat([String(q).slice(0,70)]).slice(-3)}sv()}
+function nm(k){return k[0]=='g'?L[k.slice(1)].t:V[k.slice(1)].t}
+function path(){var ks=Object.keys(T).filter(function(k){return T[k].n}),h='<h2>📊 လေ့လာမှု လမ်းကြောင်း</h2><p class="sub">အမှားအများဆုံး အပိုင်းကို အရင်လေ့လာပါ။</p>';
+ if(!ks.length)h+='<div class="card">မှတ်တမ်း မရှိသေးပါ။ ဂိမ်း အနည်းငယ် ကစားပြီးမှ ပြန်လာကြည့်ပါ။</div>';
+ ks.sort(function(a,b){return T[a].w/T[a].n<T[b].w/T[b].n?1:-1});
+ ks.forEach(function(k,r){var t=T[k],p=Math.round(100*(t.n-t.w)/t.n),g=k[0]=='g';
+  h+='<div class="card"><b>'+(r==0&&t.w?'🔴 ပထမဆုံး လေ့လာရန် – ':'')+nm(k)+'</b><div class="prog" style="margin:8px 0"><i style="width:'+p+'%"></i></div>မှန်ကန်မှု '+p+'% · မှား '+t.w+'/'+t.n+(t.note?'<div class="wk">'+E(t.note)+'</div>':'')+(t.q&&t.q.length?'<p style="margin:6px 0;color:var(--mute)">မှားခဲ့တဲ့ မေးခွန်း: '+t.q.map(E).join(' | ')+'</p>':'')+'<button class="btn ghost" onclick="'+(g?'learn(':'vlearn(')+k.slice(1)+')">သင်ခန်းစာ ပြန်လေ့လာမယ်</button></div>'});
+ var un=[];L.forEach(function(l,i){if(!T['g'+i])un.push(l.t)});V.forEach(function(v,i){if(!T['v'+i])un.push(v.t)});
+ if(un.length)h+='<div class="card"><b>⚪ မစသေးတဲ့ အပိုင်းများ</b><p style="margin:6px 0">'+un.join(' · ')+'</p></div>';
+ h+='<button class="btn ai" onclick="plan(this)">🤖 AI က ကျွန်တော့်အတွက် လေ့လာမှုအစီအစဉ် ရေးပေးမယ်</button><div id="pl" class="card" style="display:none;white-space:pre-wrap"></div><button class="btn ghost" onclick="map()">မီနူးသို့</button>';
+ app.innerHTML=h;window.scrollTo(0,0)}
+function plan(b){if(!AI)return;var o=document.getElementById('pl');b.disabled=true;o.style.display='block';o.textContent='…';
+ var s=Object.keys(T).map(function(k){var t=T[k];return nm(k)+': '+t.w+' wrong of '+t.n+(t.note?'; weak area: '+t.note:'')+(t.q&&t.q.length?'; wrong items: '+t.q.join(' | '):'')}).join('\n');
+ AI('A Myanmar student studies Third Year English (Eng 3001 & 3002). Quiz stats per topic:\n'+(s||'(no attempts yet)')+'\nWrite a personalised 5-step study path in Myanmar language: which topic first (the most wrong), which rule to review, what to practise, and when to move on to topics not yet tried. Under 200 words, plain text.',{modelTier:'quick',cache:false,onText:function(r){o.textContent=r.text}}).then(function(){b.disabled=false}).catch(function(){o.textContent='AI ကို ချိတ်ဆက်မရပါ။';b.disabled=false})}
+var H=[];
+function tg(){document.getElementById('cp').classList.toggle('open')}
+function say(){var inp=document.getElementById('ci'),v=inp.value.trim();if(!v||!AI)return;inp.value='';var m=document.getElementById('cm');
+ m.insertAdjacentHTML('beforeend','<div class="mb u"></div><div class="mb a">…</div>');var c=m.children,u=c[c.length-2],a=c[c.length-1];u.textContent=v;m.scrollTop=m.scrollHeight;
+ var ctx=S.m=='v'?V[S.vi].t:L[S.i].t+' ('+fm()+')';
+ AI('You are a friendly English tutor for Myanmar learners (Third Year English, Eng 3001 & 3002). Current topic: '+ctx+'. Answer in Myanmar language with short English examples, under 150 words, plain text only.\nConversation so far:\n'+H.slice(-6).join('\n')+'\nStudent: '+v,{modelTier:'quick',cache:false,onText:function(r){a.textContent=r.text;m.scrollTop=m.scrollHeight}}).then(function(r){H.push('Student: '+v,'Tutor: '+(r&&r.text||a.textContent))}).catch(function(){a.textContent='AI ကို ချိတ်ဆက်မရပါ။ ပြန်စမ်းပါ။'})}
+var S={pts:0,stars:[],i:0,k:0,ok:0,ai:null},app=document.getElementById("app"),AI=null;
+AI=function(prompt,o){return fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})}).then(function(r){return r.json()}).then(function(d){if(!d||!d.text)throw 0;if(o&&o.onText)o.onText({text:d.text});return{text:d.text}})};
+AI.json=function(prompt,o){return AI(prompt+'\nReturn ONLY valid JSON. No markdown, no code fences.').then(function(r){return JSON.parse(r.text.replace(/```json|```/g,'').trim())})};
+document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('hasai')});
+var LID;try{LID=localStorage.getItem('gq-id');if(!LID){LID=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Date.now())+Math.random();localStorage.setItem('gq-id',LID)}}catch(e){LID='anon'}
+var _sv=sv,_tm;sv=function(){_sv();clearTimeout(_tm);_tm=setTimeout(function(){fetch('/api/progress',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:LID,stats:T,points:S.pts})}).catch(function(){})},1500)};
+fetch('/api/progress?id='+encodeURIComponent(LID)).then(function(r){return r.json()}).then(function(d){if(d&&d.stats&&Object.keys(d.stats).length){T=d.stats;S.pts=Math.max(S.pts,d.points||0)}}).catch(function(){});
+var P=[
+["Rewrite in the Third Person Singular.",["Igloos are circular snow houses used by Eskimos.","Do polar bears live longer than brown bears?","Camels have three eyelids to protect their eyes from sand.","Women live longer than men."]],
+["Rewrite in the Interrogative (question).",["Sarah bought a present for the party.","She has never been to Laos before.","I can lose weight if I run daily.","Shoes cost more than slippers."]],
+["Begin with I wish / He wishes / She wishes.",["I am sorry that I don't have her mobile phone number.","It's a pity that I didn't know he was coming.","Please stop making so much noise.","She is sorry that she can't go abroad for her further studies."]],
+["Rewrite the full sentence using the verbs in brackets in the correct tenses.",["While I (do) the language course, I (meet) lots of young people.","If I (pass) my exam successfully, I (start) an apprenticeship next year.","I (not sleep) well last night as the dogs (bark) all night.","After we (set off), the car (start) to make a strange noise."]],
+["Rewrite using Have + Object + Past Participle, omitting the doer.",["My sister is asking her lawyer to vet the contract.","Tom asked the technician to reinstall the Windows system files.","My father will call the plumber to mend the pipes.","He is going to ask the carpenter to repair his roof."]],
+["Rewrite using Have + Object + Past Participle + by noun (keep the doer after 'by').",["She has asked the company to increase her salary.","My uncle asked the maid to iron all his trousers neatly.","She asked the man to repair the broken pipes in her bathroom.","My father is asking the painter to paint the walls blue."]],
+["Rewrite replacing the idea with a suitable modal (may, might, can, could, will, would, should, must).",["Perhaps the children are hungry now.","It is advisable to carry an umbrella during the rainy season.","He promises to buy his girlfriend a diamond ring for her birthday.","It is necessary for all students to attend classes regularly."]],
+["Write what you deduce using must (use the cue word).",["The baby is crying a lot. (hungry)","She didn't answer my call yesterday. (busy)","I can't find my wallet now. (drop)","They got lost in the forest yesterday. (frightened)"]]
+];
+var V=[{t:"Common Abbreviations",m:"အတိုကောက်စာလုံးများ",tip:"အတိုကောက်ကို အဓိပ္ပါယ်အပြည့်အစုံနဲ့ တွဲမှတ်ပါ။ ဥပမာ e.g. = ဥပမာအားဖြင့်၊ i.e. = ဆိုလိုသည်မှာ၊ P.S. = ထပ်ဆောင်းမှတ်ချက်၊ R.S.V.P. = ပြန်ကြားပါ။",d:"A.D.|in the year of our Lord (after the birth of Christ)\na.m.|before noon\nAve|avenue\nB.C.|before Christ\ncf.|compare\ne.g.|for example\netc.|and other things; and so on\nG.M.T.|Greenwich Mean Time\nG.P.|general practitioner\nG.P.O.|General Post Office\ni.e.|that is\nI.Q.|Intelligence Quotient\nM.C.|Master of Ceremonies\nmisc.|miscellaneous\np.m.|after noon\nP.O.W.|Prisoner of War\nR.I.P.|May she (he/they) be at rest\nR.S.V.P.|Please reply\nP.T.O.|Please turn over\nv.p.p.|Value Payable Post\nP.S.|postscript"},
+{t:"Similes",m:"နှိုင်းယှဉ်ချက် (as ... as ...)",tip:"Simile = as + adjective + as + နှိုင်းယှဉ်စရာ။ clue word တွေက ဘယ်အခြေအနေမှာ သုံးလဲဆိုတာ ပြတာမို့ clue ကိုကြည့်ပြီး simile ကို ရွေးပါ။",d:"as agile as a cat/monkey|moving fast, ballet, climb/jump, acrobats, gymnast\nas alike as two peas|twin, the two of them, the same\nas bashful as a schoolgirl|shy, introduce, tease, compliment\nas beautiful as the sunset/rainbow|view, painting, wedding gown, bouquet\nas blind as a bat|unable to see because of age, glasses, ignorance\nas clean as a new pin|housewife keeps the room clean, neat and tidy\nas clear as crystal|water, stream, easy problem/sum/instruction\nas deaf as a beetle|unable to hear because of age, stubborn\nas docile as a lamb|obey, timid, gentle, give up drinking\nas dull as ditchwater|boring talk, lecture, meeting, sleepy\nas eager as a bridegroom|ambitious, to show their abilities, to know the result\nas fidgety as an old maid|exam, test, interview (nervous)\nas fit as a fiddle|old-aged but healthy, exercise\nas flat as a pancake|plain field, smooth land, no hills"},
+{t:"Idiomatic Expressions",m:"ဒေသိယစကားပြော (Idioms)",tip:"Idiom ကို စကားလုံးတစ်လုံးချင်း ဘာသာမပြန်ဘဲ တစ်ခုလုံးကို အဓိပ္ပါယ်တစ်ခုအဖြစ် မှတ်ပါ။ စာမေးပွဲမှာ စာကြောင်းထဲက စကားလုံးကို idiom နဲ့ အစားထိုးရတယ်။",d:"to call up|to telephone\ntired out|extremely tired\nto take one's time|to work leisurely, not to hurry\nto talk over|to discuss, consider\nto call off|to cancel\nto count on|to depend upon\nonce in a while|occasionally\nto be out of the question|to be impossible\nto get through|to finish\nto take something for granted|to accept as true without investigation\nto take advantage of|to use an opportunity; to impose upon someone\nto run out of|to exhaust the supply of\nto make the best of|to accept a bad situation cheerfully\nto keep up with|to maintain the same speed\nto go around|to be sufficient for everyone\nto show off|to display one's ability or possessions to excess\nto bring up|to rear, raise from childhood\nto hold good|to remain valid\nto take by surprise|to surprise\nto take a chance|to have the possibility\nto serve one right|to receive one's just punishment\nto meet half-way|to compromise\nto stick to|to adhere, be constant\nto beat about the bush|to be indirect in approaching something\nto waste one's breath|to lose time talking in an effort to convince someone of nothing"}];
+V.forEach(function(v){v.d=v.d.split("\n").map(function(x){return x.split("|")})});
+function sh(a){return a.slice().sort(function(){return Math.random()-.5})}
+function vlearn(i){S.vi=i;S.m='v';S.ai=null;var v=V[i];
+ app.innerHTML='<h2>'+v.t+'</h2><p class="sub">'+v.m+'</p><div class="card"><p style="margin:0">'+v.tip+'</p></div><div class="card vl">'+v.d.map(function(x){return'<p><b>'+E(x[0])+'</b> — '+E(x[1])+'</p>'}).join('')+'</div><button class="btn" onclick="vq()">ဂိမ်းစကစားမယ်</button><button class="btn ghost" onclick="map()">နောက်သို့</button>';window.scrollTo(0,0)}
+function vq(){var d=V[S.vi].d,rev=S.vi==1,k=rev?0:1;S.m='v';
+ S.ai=sh(d).slice(0,8).map(function(x){var o=sh(sh(d.filter(function(y){return y!=x})).slice(0,3).concat([x]));return[rev?'Clue: '+x[1]+'  →  ?':x[0]+' = ?',o.map(function(y){return y[k]}),o.indexOf(x),'အဖြေ - '+x[0]+' = '+x[1]]});quiz(0)}
+function prac(i,set,lv){S.i=i;S.m='g';S.ai=null;if(!set)S.wk='';S.pl=lv||1;S.ps=set||P[i][1];
+ var h='<h2>✍️ '+L[i].t+' – အဆင့် '+S.pl+'/3</h2><p class="sub">'+P[i][0]+'<br>စာကြောင်းအပြည့် ရိုက်ဖြေပါ။</p>';
+ S.ps.forEach(function(s,j){h+='<div class="card"><p style="margin:0 0 6px">'+(j+1)+'. '+E(s)+'</p><textarea rows="2" id="a'+j+'"></textarea></div>'});
+ app.innerHTML=h+'<button class="btn" id="cb" onclick="chk()">AI ကို စစ်ခိုင်းမယ်</button><button class="btn ghost" onclick="learn('+i+')">နောက်သို့</button>';window.scrollTo(0,0)}
+function chk(){var i=S.i,b=document.getElementById('cb'),ans=S.ps.map(function(s,j){return document.getElementById('a'+j).value.trim()});
+ if(ans.some(function(x){return!x})){b.textContent='အားလုံး ဖြေပါဦး';return}
+ if(!AI)return;b.disabled=true;b.textContent='AI က စစ်နေပါတယ်…';
+ AI.json('You are a strict English exam marker for Myanmar university students. Exercise: '+P[i][0]+' Lesson: '+L[i].t+' ('+fm()+'). Items with student answers: '+JSON.stringify(S.ps.map(function(s,j){return{q:s,a:ans[j]}}))+'. '+(L[i].w?'Write the "weak" feedback in the style of these Myanmar examples (name the rule, give example conversions like drink→drinks): '+L[i].w.join(' | ')+' ':'')+'Accept any fully correct alternative; mark spelling, tense and word-form errors wrong. Return ONLY JSON: {"r":[{"ok":true or false,"model":"correct answer","why":"one-sentence explanation in Myanmar language"}],"weak":"the specific grammar weak area and how to fix it, in Myanmar language, max 60 words (empty if all correct)"}',{modelTier:'default',cache:false}).then(function(o){
+  if(!o||!Array.isArray(o.r))throw 0;
+  var t=S.ps.length,n=o.r.filter(function(x){return x&&x.ok}).length,strong=n/t>=.75,nx=strong?Math.min(3,S.pl+1):S.pl;S.pts+=n*10*S.pl;S.wk=strong?'':(o.weak||'');S.ps.forEach(function(s,j){rec('g'+i,!!(o.r[j]&&o.r[j].ok),s)});if(!strong&&o.weak){T['g'+i].note=o.weak;sv()}
+  var h='<div class="bar"><span>ရလဒ် '+n+'/'+t+'</span><span class="pts">⭐ '+S.pts+'</span></div>';
+  S.ps.forEach(function(s,j){var r=o.r[j]||{};h+='<div class="rs '+(r.ok?'ok':'no')+'"><b>'+(r.ok?'✔ ':'✘ ')+E(ans[j])+'</b>'+(r.ok?'':'<br>✔ '+E(r.model||''))+'<br>'+E(r.why||'')+'</div>'});
+  h+=strong?'<div class="wk">🔥 ကောင်းပါတယ်! သင်ကျွမ်းကျင်နေပါပြီ။ '+(S.pl<3?'ပိုခက်တဲ့ အဆင့် '+nx+' ကို ကြိုးစားကြည့်ပါ။':'အခက်ဆုံးအဆင့်ပါ။')+'</div>':'<div class="wk"><b>အားနည်းချက်</b><br>'+E(o.weak||'')+'</div>';
+  app.innerHTML=h+'<button class="btn" onclick="more('+nx+',this)">'+(strong?'ပိုခက်တဲ့ မေးခွန်းအသစ်':'ဒီအားနည်းချက်အတွက် မေးခွန်းအသစ်')+'</button><button class="btn ghost" onclick="learn('+i+')">သင်ခန်းစာပြန်ဖတ်မယ်</button><button class="btn ghost" onclick="map()">မီနူးသို့</button>';window.scrollTo(0,0)}).catch(function(){b.disabled=false;b.textContent='AI ချိတ်ဆက်မရပါ၊ ပြန်နှိပ်ပါ'})}
+function more(lv,b){if(!AI)return;b.disabled=true;b.textContent='AI က မေးခွန်းရေးနေပါတယ်…';
+ AI.json('Write 4 NEW sentences for this English exam exercise: "'+P[S.i][0]+'" (lesson: '+L[S.i].t+': '+fm()+'). Difficulty '+lv+' of 3 (1 = short textbook sentences, 3 = long sentences with extra traps). '+(S.wk?'Focus on this weak area: '+S.wk+'. ':'')+'Return ONLY a JSON array of 4 strings (the sentences only, no answers).',{modelTier:'quick',cache:false}).then(function(a){if(!Array.isArray(a)||a.length<2)throw 0;prac(S.i,a.slice(0,4).map(String),lv)}).catch(function(){b.disabled=false;b.textContent='ပြန်နှိပ်ပါ'})}
+function go(id){map();setTimeout(function(){var e=document.getElementById(id);if(e)e.scrollIntoView({behavior:"smooth"})},30)}
+function gg(){go("gl")}
+function gv(){go("vl")}
+function Q(){return S.ai||L[S.i].q}
+function E(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function fm(){return L[S.i].f.replace(/<[^>]+>/g,"")}
+function ask(){var v=document.getElementById("tq").value.trim(),o=document.getElementById("ta");if(!v||!AI)return;o.textContent="…";
+ AI("You are a friendly English grammar tutor for Myanmar learners. Lesson: "+L[S.i].t+" ("+fm()+"). Answer in Myanmar language with short English examples, under 150 words, plain text only. Student question: "+v,{modelTier:"quick",cache:false,onText:function(r){o.textContent=r.text}}).catch(function(){o.textContent="AI ကို ချိတ်ဆက်မရပါ။ ခဏနေမှ ပြန်စမ်းပါ။"})}
+function gen(b){if(!AI)return;b.disabled=true;b.textContent="AI က မေးခွန်းရေးနေပါတယ်…";
+ AI.json("Write 3 NEW multiple-choice English grammar questions for Myanmar learners on: "+L[S.i].t+" ("+fm()+"). Each question is a sentence with a ___ blank. Return ONLY a JSON array of 3 items, each item = [question, [4 options], index of correct option (0-3), one-sentence explanation in Myanmar language].",{modelTier:"quick",cache:false}).then(function(a){
+  var r=(Array.isArray(a)?a:[]).filter(function(q){return Array.isArray(q)&&q.length>3&&Array.isArray(q[1])&&q[1].length>1&&q[1][Number(q[2])]!=null}).map(function(q){return[q[0],q[1],Number(q[2]),q[3]]});
+  if(!r.length)throw 0;S.ai=r;quiz(0)}).catch(function(){b.disabled=false;b.textContent="ချိတ်ဆက်မရပါ၊ ပြန်နှိပ်ကြည့်ပါ"})}
+function TOP(c){return '<div class="top"><span>Workspace / <b>'+c+'</b></span><span class="tr"><span class="lang">EN / မြန်မာ</span><span class="av">GQ</span></span></div>'}
+function sp(){var dn=S.stars.filter(function(x){return x!=null}).length,e=document.getElementById('spi');if(e){e.style.width=Math.round(dn/8*100)+'%';document.getElementById('spt').textContent=dn+' of 8 lessons'}}
+function map(){
+ var dn=S.stars.filter(function(x){return x!=null}).length,nx=S.stars.findIndex(function(x){return x==null}),ni=nx<0?0:nx,
+ d=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}).toUpperCase();
+ var h=TOP('Home')+'<small class="eyebrow">'+d+'</small><h1>Hello, learner! 👋</h1><p class="sub">A little practice today. A lot more confidence tomorrow.</p>'
+ +'<section class="hero"><div><span class="chip dk">YOUR NEXT CHAPTER</span><h1>Better Grammar, Brighter Future.</h1><p>Build your English confidence, one question at a time. Your AI tutor is always here to help.</p><button class="cta" onclick="learn('+ni+')">→ Continue '+L[ni].t+' quiz</button></div><div class="partner"><div class="pt"><span class="ico">🤖</span><div><b>Your learning partner</b><small>English + Myanmar</small></div></div><p class="qt">“Small steps,<br>big breakthroughs.”</p><button class="chip dk ai" onclick="tg()">Explain</button><button class="chip dk ai" onclick="prac('+ni+')">Practice</button></div></section>'
+ +'<div class="hg"><button class="hc" onclick="gg()"><span class="ic">📝</span><div><b>Grammar Quiz</b><small>8 lessons, 32 questions. A smarter you.</small><em>Start practicing →</em></div></button><button class="hc" onclick="path()"><span class="ic">📊</span><div><b>My Progress</b><small>'+dn+'/8 lessons · '+S.pts+' points</small><em>See your growth →</em></div></button><button class="hc" onclick="gv()"><span class="ic">🔤</span><div><b>Vocabulary</b><small>3 topics · abbreviations, similes, idioms</small><em>Build your word bank →</em></div></button><button class="hc" onclick="gg()"><span class="ic">📖</span><div><b>Grammar Topics</b><small>8 topics with Myanmar explanations</small><em>Find your next lesson →</em></div></button></div>'
+ +'<h2 id="gl">Grammar topics</h2><div class="tg2">';
+ L.forEach(function(l,i){var s=S.stars[i];h+='<button class="tp" onclick="learn('+i+')"><span class="ic">'+(i+1)+'</span><div><b>'+l.t+'</b><small>'+l.q.length+' questions • '+(s!=null?'★'.repeat(s)+'☆'.repeat(3-s):'Not started')+'</small></div><span>›</span></button>'});
+ h+='</div><h2 id="vl" style="margin-top:24px">Vocabulary</h2><div class="tg2">';
+ V.forEach(function(v,i){h+='<button class="tp" onclick="vlearn('+i+')"><span class="ic">'+String.fromCharCode(65+i)+'</span><div><b>'+v.t+'</b><small>'+v.d.length+' words • '+v.m+'</small></div><span>›</span></button>'});
+ h+='</div><div class="streak"><span>🔥</span><div><b>Great progress!</b><small>'+dn+' of 8 lessons completed. Keep going.</small><div class="prog" style="margin-top:8px"><i style="width:'+Math.round(dn/8*100)+'%"></i></div></div></div>';
+ app.innerHTML=h;sp();window.scrollTo(0,0)}
+function learn(i){
+ S.i=i;S.m='g';S.ai=null;var l=L[i];
+ app.innerHTML='<h2>'+(i+1)+'. '+l.t+'</h2><p class="sub">'+l.m+'</p><div class="card"><p style="margin:0">'+l.e+'</p><div class="formula">'+l.f+'</div>'+l.x.map(function(x){return'<p class="ex">✔ '+x+'</p>'}).join('')+'</div>'+(l.w?'<div class="card"><b>⚠️ အမှားများတတ်တဲ့ အချက်</b>'+l.w.map(function(t){return'<p style="margin:8px 0">• '+t+'</p>'}).join('')+'</div>':'')+'<div class="ai card"><b>🤖 AI ဆရာကို မေးမယ်</b><input id="tq" placeholder="မေးခွန်းရေးပါ (ဥပမာ - ဒီ grammar ကို ဘယ်လိုသုံးလဲ)"><button class="btn ghost" onclick="ask()">မေးမယ်</button><p id="ta" style="white-space:pre-wrap;margin:8px 0 0"></p></div><button class="btn" onclick="quiz(0)">ဂိမ်းစကစားမယ်</button><button class="btn ai" onclick="prac('+i+')">✍️ AI စစ်ပေးမယ့် စာမေးပွဲပုံစံ လေ့ကျင့်ခန်း</button><button class="btn ghost" onclick="map()">နောက်သို့</button>';
+ window.scrollTo(0,0)}
+function quiz(k,keep){
+ if(k==0&&!keep){S.ok=0;S.ans=[];S.t0=Date.now()}
+ S.k=k;var A=Q(),q=A[k],n=A.length,a=S.ans[k],pc=Math.round((k+1)/n*100),ttl=S.m=='v'?V[S.vi].t:L[S.i].t;
+ app.innerHTML=TOP('Quizzes')+'<h1>'+E(ttl)+' — Question '+(k+1)+' of '+n+'</h1><p class="sub">One question closer to confident English.</p><div class="qm"><span class="chip">'+(S.m=='v'?'Vocabulary':'Grammar')+(S.ai?' · AI':'')+'</span><span class="tmr">⏱ <b id="tm">00:00</b></span></div><div class="qp"><span>Question '+(k+1)+' of '+n+'</span><span>'+pc+'%</span></div><div class="prog"><i style="width:'+pc+'%"></i></div><div class="card qc"><small class="eyebrow">CHOOSE THE CORRECT ANSWER</small><p class="q">'+E(q[0])+'</p>'+q[1].map(function(o,j){return'<button class="opt" onclick="sel('+j+')"><i>'+'ABCD'[j]+'</i>'+E(o)+'</button>'}).join('')+'<div class="fb" id="fb"></div></div><div class="qn"><button class="btn ghost" onclick="'+(k>0?'quiz('+(k-1)+',1)':(S.m=='v'?'vlearn('+S.vi+')':'learn('+S.i+')'))+'">← Previous</button><span><button class="btn ghost" id="sb2" onclick="sub()">Submit answer</button><button class="btn" onclick="nxt()">'+(k==n-1?'Finish':'Next')+' →</button></span></div><p class="note">🛡 Your progress is saved. Need a hint? Ask your AI tutor without leaving this question.</p>';
+ S.sel=a!=null?a:null;if(a!=null)show(a);window.scrollTo(0,0)}
+function sel(j){if(S.ans[S.k]!=null)return;S.sel=j;document.querySelectorAll('.opt').forEach(function(b,n){b.classList.toggle('on',n==j)})}
+function sub(){if(S.sel==null||S.ans[S.k]!=null)return;var j=S.sel,q=Q()[S.k],ok=j==q[2];S.ans[S.k]=j;if(ok){S.pts+=10;S.ok++}rec(S.m=='v'?'v'+S.vi:'g'+S.i,ok,q[0]);show(j)}
+function show(j){var q=Q()[S.k],ok=j==q[2];document.querySelectorAll('.opt').forEach(function(b,n){b.disabled=true;b.classList.remove('on');if(n==q[2])b.classList.add('ok');else if(n==j)b.classList.add('no')});
+ document.getElementById('fb').innerHTML='<span style="color:var(--'+(ok?'ok':'no')+')">'+(ok?'✔ မှန်ပါတယ်! +10 မှတ်':'✘ မှားသွားပါတယ်')+'</span><br>'+E(q[3])+'<button class="btn ghost ai" style="margin-top:8px" onclick="tg()">🤖 Ask AI to explain</button>';document.getElementById('sb2').disabled=true}
+function nxt(){if(S.ans[S.k]==null){sub();return}if(S.k==Q().length-1)done();else quiz(S.k+1)}
+setInterval(function(){var e=document.getElementById('tm');if(e&&S.t0){var t=Math.floor((Date.now()-S.t0)/1000);e.textContent=('0'+Math.floor(t/60)).slice(-2)+':'+('0'+t%60).slice(-2)}},1000);
+function done(){setTimeout(sp,0);
+ var n=Q().length,s=S.ok,st=s==n?3:s>=n*.6?2:s>0?1:0;if(!S.ai&&(S.stars[S.i]==null||st>S.stars[S.i]))S.stars[S.i]=st;
+ var all=S.stars.filter(function(x){return x!=null}).length==8;
+ app.innerHTML='<div class="card"><div class="big">'+'★'.repeat(st)+'☆'.repeat(3-st)+'</div><h2 style="text-align:center">'+(st==3?'အရမ်းတော်ပါတယ်!':st>=1?'ကောင်းပါတယ်၊ ထပ်ကြိုးစားပါ။':'စိတ်မညစ်ပါနဲ့၊ ပြန်လေ့လာကြည့်ပါ။')+'</h2><p style="text-align:center;margin:0">မှန်သည် '+s+'/'+n+' · စုစုပေါင်း '+S.pts+' မှတ်'+(all?'<br>🎉 သင်ခန်းစာ ၈ ခုလုံး ပြီးပါပြီ!':'')+'</p></div>'+(S.m=='g'&&S.i<7?'<button class="btn" onclick="learn('+(S.i+1)+')">နောက်သင်ခန်းစာ</button>':'')+''+(S.m=='g'?'<button class="btn ghost ai" onclick="gen(this)">🤖 AI နဲ့ မေးခွန်းအသစ် ၃ ခု ယူမယ်</button>':'')+'<button class="btn ghost" onclick="'+(S.m=='v'?'vq()':'quiz(0)')+'">ပြန်ကစားမယ်</button><button class="btn ghost" onclick="map()">မီနူးသို့</button>';
+}
+map();
+</script>
+</body>
+</html>
