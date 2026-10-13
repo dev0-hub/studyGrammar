@@ -1,7 +1,7 @@
 // Vercel serverless function: AI tutor proxy. The API key stays on the server.
 module.exports = async function (req, res) {
   const key = process.env.GEMINI_API_KEY;
-  const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+  const model = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
 
   async function ask(prompt) {
     const body = { contents: [{ parts: [{ text: prompt }] }] };
