@@ -4,7 +4,7 @@ Static site (index.html) + two Vercel serverless functions (api/chat.js, api/pro
 
 ## Environment variables (Vercel > Project > Settings > Environment Variables)
 - GEMINI_API_KEY      - key from Google AI Studio (free tier)
-- GEMINI_MODEL        - optional, default gemini-2.5-flash (check the current free model name in AI Studio)
+- GEMINI_MODEL        - optional, default gemini-3.8-flash (check the current free model name in AI Studio)
 - SUPABASE_URL        - https://xxxx.supabase.co
 - SUPABASE_SERVICE_KEY - Supabase service_role key (server only, never put it in index.html)
 
